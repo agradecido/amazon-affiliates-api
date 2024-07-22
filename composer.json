@@ -1,0 +1,6 @@
+{
+    "require": {
+        "thewirecutter/paapi5-php-sdk": "^1.2",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
