@@ -26,6 +26,10 @@
  * For more details, refer: https://webservices.amazon.com/paapi5/documentation/search-items.html
  */
 
+namespace Amz;
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
 use Amazon\ProductAdvertisingAPI\v1\ApiException;
 use Amazon\ProductAdvertisingAPI\v1\com\amazon\paapi5\v1\api\DefaultApi;
 use Amazon\ProductAdvertisingAPI\v1\com\amazon\paapi5\v1\PartnerType;
@@ -33,18 +37,18 @@ use Amazon\ProductAdvertisingAPI\v1\com\amazon\paapi5\v1\ProductAdvertisingAPICl
 use Amazon\ProductAdvertisingAPI\v1\com\amazon\paapi5\v1\SearchItemsRequest;
 use Amazon\ProductAdvertisingAPI\v1\com\amazon\paapi5\v1\SearchItemsResource;
 use Amazon\ProductAdvertisingAPI\v1\Configuration;
-
+use GuzzleHttp;
 use Dotenv\Dotenv;
+use Amz\AmazonDataParser;
 
-require_once(__DIR__ . '/vendor/autoload.php');
+$data = searchItems('albertucho');
+$dataParser = new AmazonDataParser($data);
+$parsedData = $dataParser->parse();
+print_r($parsedData);
 
-searchItems();
-
-function searchItems($keyword = 'Harry Potter')
-{
+function searchItems($keyword) {
 
     global $api_key, $api_secret, $partner_tag, $amazon_host, $amazon_region;
-
 
     $dotenv = Dotenv::createImmutable(__DIR__);
     $dotenv->load();
@@ -101,7 +105,7 @@ function searchItems($keyword = 'Harry Potter')
     $searchIndex = "All";
 
     # Specify item count to be returned in search result
-    $itemCount = 1;
+    $itemCount = 10;
 
     /*
      * Choose resources you want from SearchItemsResource enum
@@ -137,8 +141,10 @@ function searchItems($keyword = 'Harry Potter')
     try {
         $searchItemsResponse = $apiInstance->searchItems($searchItemsRequest);
 
-        echo 'API called successfully', PHP_EOL;
-        echo 'Complete Response: ', $searchItemsResponse, PHP_EOL;
+        return $searchItemsResponse;
+
+        // echo 'API called successfully', PHP_EOL;
+        // echo 'Complete Response: ', $searchItemsResponse, PHP_EOL;
 
         # Parsing the response
         if ($searchItemsResponse->getSearchResult() !== null) {
@@ -188,7 +194,8 @@ function searchItems($keyword = 'Harry Potter')
         } else {
             echo "Error response body: ", $exception->getResponseBody(), PHP_EOL;
         }
-    } catch (Exception $exception) {
+    } catch (\Exception $exception) {
         echo "Error Message: ", $exception->getMessage(), PHP_EOL;
     }
 }
+
