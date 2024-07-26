@@ -22,6 +22,7 @@ class AmazonDataParser {
                 'Title' => $item->getItemInfo()->getTitle()->getDisplayValue(),
                 'Price' => $item->getOffers()->getListings()[0]->getPrice()->getDisplayAmount(),
                 'URL' => $item->getDetailPageURL(),
+                'Image' => $item->getImages()->getPrimary()->getLarge()->getURL()
             ];
         }
 

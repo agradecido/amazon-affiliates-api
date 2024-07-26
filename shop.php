@@ -114,7 +114,8 @@ function searchItems($keyword) {
      */
     $resources = [
         SearchItemsResource::ITEM_INFOTITLE,
-        SearchItemsResource::OFFERSLISTINGSPRICE
+        SearchItemsResource::OFFERSLISTINGSPRICE,
+        SearchItemsResource::IMAGESPRIMARYLARGE,
     ];
 
     # Forming the request
