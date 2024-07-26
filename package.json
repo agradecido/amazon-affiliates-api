@@ -3,6 +3,7 @@
     "tailwindcss": "^3.4.7"
   },
   "scripts": {
-    "build:css": "tailwindcss build assets/styles/styles.css -o assets/styles/styles.min.css"
+    "build:css": "tailwindcss build -i assets/styles/styles.css -o assets/styles/styles.min.css",
+    "watch:css": "tailwindcss build -i assets/styles/styles.css -o assets/styles/styles.min.css --watch"
   }
 }
