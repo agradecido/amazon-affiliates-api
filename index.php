@@ -40,7 +40,6 @@ function generateDescription($title, $price) {
             <h1 class="text-3xl font-bold">Discos de Capitan Cobarde y Albertucho</h1>
             <nav>
                 <a href="#" class="text-white mx-2">Inicio</a>
-                <!--<a href="#" class="text-white mx-2">Products</a>-->
                 <a href="mailto:info@capitancobarde.com" class="text-white mx-2">Contacto</a>
             </nav>
         </div>

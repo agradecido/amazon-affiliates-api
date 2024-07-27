@@ -10,6 +10,7 @@ class Thumbor
     private $baseUrl;
     private $key;
     private $secret;
+    private $quality;
 
     public function __construct($baseUrl)
     {
@@ -19,6 +20,7 @@ class Thumbor
         $this->baseUrl = $baseUrl;
         $this->key = getenv('THUMBOR_KEY') ?: ($_ENV['THUMBOR_KEY'] ?? null);
         $this->secret = getenv('THUMBOR_SECRET') ?: ($_ENV['THUMBOR_SECRET'] ?? null);
+        $this->quality = getenv('THUMBOR_QUALITY') ?: ($_ENV['THUMBOR_QUALITY'] ?? null);
     }
 
     public function url($image, $width, $height)
@@ -34,7 +36,7 @@ class Thumbor
 
         $url .= "/fit-in/{$width}x{$height}";
 
-        $url .= "/smart/filters:quality(80)";
+        $url .= "/smart/filters:quality(" . $this->quality . ")";
 
         $url .= "/{$image}";
 

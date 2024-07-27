@@ -19,4 +19,4 @@ cache
 .docker
 docker
 assets/styles/dist
-
+deploy.sh

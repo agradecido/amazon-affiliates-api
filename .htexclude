@@ -1,3 +1,4 @@
+assets/src
 vendor
 .env.example
 composer.lock
@@ -17,10 +18,14 @@ cache
 docker
 .git
 .gitignore
-assets/styles/src
 *.tar.gz
 shop.php
 tailwind.config.js
 README.md
+deploy.sh
+.htexclude
 postcss.config.js
+package.json
+package-lock.json
+
 
