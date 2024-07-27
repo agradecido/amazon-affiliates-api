@@ -58,7 +58,7 @@ foreach ($products as $product) {
             <div class="bg-white shadow-md rounded-lg overflow-hidden">
                 <div class="aspect-w-1 aspect-h-1">
                     <a href="' . $product['URL'] . '">
-                        <img class="w-full h-full object-cover" width="485" height="485" src="' . $thumb->url($product['Image'], 485, 485) . '" alt="' . $product['Title'] .'">
+                        <img loading="lazy" class="w-full h-full object-cover" width="485" height="485" src="' . $thumb->url($product['Image'], 485, 485) . '" alt="' . $product['Title'] .'">
                     </a>
                </div>
                 <div class="p-4">
