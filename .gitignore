@@ -7,3 +7,16 @@ node_modules
 paapi5-php-sdk-amazon-examples
 *.pem
 /index.php
+*.sql
+robots.txt
+*.zip
+*.gz
+*.tar
+web/app/cache/*
+*.log
+cache
+.idea
+.docker
+docker
+assets/styles/dist
+

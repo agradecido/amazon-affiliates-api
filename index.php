@@ -4,9 +4,13 @@ require __DIR__ . '/src/vendor/autoload.php';
 use Amz\AmazonProductSearch;
 use Amz\AmazonDataParser;
 use Dotenv\Dotenv;
+use Amz\Thumbor;
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
+
+$baseUrl = getenv('THUMBOR_DOMAIN') ?: ($_ENV['THUMBOR_DOMAIN'] ?? null);
+$thumb = new Thumbor($baseUrl);
 
 $keyword = getenv('PRODUCT_KEYWORD') ?: ($_ENV['PRODUCT_KEYWORD'] ?? null);
 $search = new AmazonProductSearch($keyword);
@@ -26,8 +30,8 @@ function generateDescription($title, $price) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="assets/styles/styles.min.css" rel="stylesheet">
-    <title>Capitan Cobarde Amazon Store</title>
+    <link href="assets/dist/styles/styles.min.css" rel="stylesheet">
+    <title>Albertucho y Capitan Cobarde Store</title>
 </head>
 
 <body class="bg-gray-100 text-gray-800">
@@ -56,7 +60,7 @@ function generateDescription($title, $price) {
             <?php foreach ($products as $product) : ?>
                 <div class="bg-white shadow-md rounded-lg overflow-hidden">
                     <div class="aspect-w-1 aspect-h-1">
-                        <img class="w-full h-full object-cover" src="<?php echo $product['Image']; ?>" alt="<?php echo $product['Title']; ?>">
+                        <img class="w-full h-full object-cover" width="300"  height="300" src="<?php echo $thumb->url($product['Image'], 500, 500); ?>" alt="<?php echo $product['Title']; ?>">
                     </div>
                     <div class="p-4">
                         <h2 class="text-lg font-bold"><?php echo $product['Title']; ?></h2>
@@ -74,7 +78,7 @@ function generateDescription($title, $price) {
             <p class="mb-4">
                 No pierdas la oportunidad de sumergirte en el universo musical de <strong>Albertucho</strong> y <strong>El Capitán Cobarde</strong>. Visita nuestra tienda y descubre la pasión, el talento y la autenticidad que estos dos grandes del rock andaluz tienen para ofrecer. Ya seas un seguidor de antaño o un nuevo aficionado, encontrarás algo que te conectará aún más con su música y su arte. ¡Te esperamos con los brazos abiertos y los mejores discos para que vivas una experiencia inolvidable!
             </p>
-        </section>        
+        </section>     
     </main>
 
     <footer class="bg-blue-600 text-white py-4">

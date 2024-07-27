@@ -56,6 +56,7 @@ class AmazonProductSearch {
         $partner_tag = getenv('AMZ_PARTNER_TAG') ?: ($_ENV['AMZ_PARTNER_TAG'] ?? null);
         $amazon_host = getenv('AMZ_HOST') ?: ($_ENV['AMZ_HOST'] ?? null);
         $amazon_region = getenv('AMZ_REGION') ?: ($_ENV['AMZ_REGION'] ?? null);
+        $items_total  = getenv('ITEMS_TOTAL') ?: ($_ENV['ITEMS_TOTAL'] ?? 12);
     
         if (!$api_key || !$api_secret || !$partner_tag || !$amazon_host || !$amazon_region) {
             die('Error: the environment variables are not set. Please check the .env file');
@@ -101,7 +102,7 @@ class AmazonProductSearch {
         $searchIndex = "All";
     
         # Specify item count to be returned in search result
-        $itemCount = 10;
+        $itemCount = 12;
     
         /*
          * Choose resources you want from SearchItemsResource enum
