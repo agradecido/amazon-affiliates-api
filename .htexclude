@@ -4,8 +4,6 @@ vendor
 composer.lock
 *.sql
 .gitignore
-.htaccess
-robots.txt
 node_modules
 *.zip
 *.gz
@@ -27,5 +25,6 @@ deploy.sh
 postcss.config.js
 package.json
 package-lock.json
+paapi5-php-sdk-amazon-examples
 
 
